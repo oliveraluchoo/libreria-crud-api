@@ -3,6 +3,7 @@ package com.example.Books.controllers;
 
 import com.example.Books.entities.Book;
 import com.example.Books.services.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,8 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
-
     @PostMapping
-    public Book addBook(@RequestBody Book book){
+    public Book addBook(@RequestBody @Valid Book book){
         return bookService.addBook(book);
     }
 
@@ -35,7 +35,7 @@ public class BookController {
         bookService.deleteBook(id);
     }
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book){
+    public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book book){
         return bookService.updateBook(id,book);
     }
 }
