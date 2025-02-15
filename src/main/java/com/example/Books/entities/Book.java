@@ -29,4 +29,11 @@ public class Book {
     private String genero;
 
 
+    public Book(String isbn, String titulo, String autor, Integer aniopublicacion, String genero) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.aniopublicacion = aniopublicacion;
+        this.genero = genero;
+    }
 }
