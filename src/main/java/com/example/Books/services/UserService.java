@@ -2,6 +2,7 @@ package com.example.Books.services;
 
 import com.example.Books.entities.User;
 import com.example.Books.repositories.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class UserService {
     }
 
     public User getUserById(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No user with id: " + id));
+        return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("No user with id: " + id));
     }
 
     public User getUserByUsername(String username){
