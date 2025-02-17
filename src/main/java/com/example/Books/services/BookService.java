@@ -1,11 +1,9 @@
 package com.example.Books.services;
 
 
-import com.example.Books.DTO.BookDTO;
 import com.example.Books.entities.Book;
 import com.example.Books.repositories.BookRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,13 +23,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public Book addBook(BookDTO bookDTO) {
-        Book book = new Book();
-        book.setIsbn(bookDTO.getIsbn());
-        book.setTitulo(bookDTO.getTitulo());
-        book.setAutor(bookDTO.getAutor());
-        book.setAniopublicacion(bookDTO.getAniopublicacion());
-        book.setGenero(bookDTO.getGenero());
+    public Book addBook(Book book) {
         return bookRepository.save(book);
     }
 

@@ -19,10 +19,10 @@ import lombok.NoArgsConstructor;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @NotNull(message = "ID cannot be null")
     private Long id;
     @NotBlank(message = "ISBN cannot be blank")
     @NotNull(message = "ID cannot be null")
+    @Column(unique = true)
     @Schema(description = "Book's isbn",example = "100")
     private String isbn;
     @NotBlank(message = "Title cannot be blank")

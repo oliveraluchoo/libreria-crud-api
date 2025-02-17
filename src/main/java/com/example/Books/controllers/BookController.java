@@ -1,7 +1,6 @@
 package com.example.Books.controllers;
 
 
-import com.example.Books.DTO.BookDTO;
 import com.example.Books.entities.Book;
 import com.example.Books.services.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,7 +38,7 @@ public class BookController {
     @ApiResponse(responseCode = "400",description = "Request error")
     @ApiResponse(responseCode = "500",description = "Internal server error")
     @PreAuthorize("hasRole('ADMIN')")
-    public Book addBook(@RequestBody BookDTO book){
+    public Book addBook(@RequestBody Book book){
         return bookService.addBook(book);
     }
 
@@ -71,7 +70,7 @@ public class BookController {
     @ApiResponse(responseCode = "500",description = "Internal server error")
     @Parameter(description = "ID of the book to update", required = true, example = "1")
     @PreAuthorize("hasRole('ADMIN')")
-    public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book book){
+    public Book updateBook(@PathVariable Long id, @RequestBody @Valid Book book){
         return bookService.updateBook(id,book);
     }
 }
