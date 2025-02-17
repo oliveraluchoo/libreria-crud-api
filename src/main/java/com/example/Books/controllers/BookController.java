@@ -1,6 +1,7 @@
 package com.example.Books.controllers;
 
 
+import com.example.Books.DTO.BookDTO;
 import com.example.Books.entities.Book;
 import com.example.Books.services.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,12 +32,14 @@ public class BookController {
         return bookService.getAllBooks();
     }
 
+
     @PostMapping
     @Operation(summary = "Insert book",description = "Insert a new book")
     @ApiResponse(responseCode = "200",description = "Book inserted succesfully", content = @Content(mediaType = "application/json",schema = @Schema(implementation = Book.class)))
     @ApiResponse(responseCode = "400",description = "Request error")
     @ApiResponse(responseCode = "500",description = "Internal server error")
-    public Book addBook(@RequestBody @Valid Book book){
+    @PreAuthorize("hasRole('ADMIN')")
+    public Book addBook(@RequestBody BookDTO book){
         return bookService.addBook(book);
     }
 
@@ -55,6 +59,7 @@ public class BookController {
     @ApiResponse(responseCode = "400",description = "Request error")
     @ApiResponse(responseCode = "500",description = "Internal server error")
     @Parameter(description = "ID of the book to delete", required = true, example = "1")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteBook(@PathVariable Long id){
         bookService.deleteBook(id);
     }
@@ -65,6 +70,7 @@ public class BookController {
     @ApiResponse(responseCode = "400",description = "Request error")
     @ApiResponse(responseCode = "500",description = "Internal server error")
     @Parameter(description = "ID of the book to update", required = true, example = "1")
+    @PreAuthorize("hasRole('ADMIN')")
     public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book book){
         return bookService.updateBook(id,book);
     }

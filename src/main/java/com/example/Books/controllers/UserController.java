@@ -19,6 +19,7 @@ public class UserController {
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user){
+        System.out.println("AGREGANDO USUARIO.");
         return userService.saveUser(user);
     }
 }

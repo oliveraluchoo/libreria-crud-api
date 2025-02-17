@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull(message = "ID cannot be null")
+//    @NotNull(message = "ID cannot be null")
     private Long id;
     @NotBlank(message = "ISBN cannot be blank")
     @NotNull(message = "ID cannot be null")
