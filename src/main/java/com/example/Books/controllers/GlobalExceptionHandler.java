@@ -1,7 +1,9 @@
-package com.example.Books.exceptions;
+package com.example.Books.controllers;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.NonUniqueResultException;
 import jakarta.validation.ConstraintViolationException;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -43,4 +45,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
+
+    @ExceptionHandler(NonUniqueResultException.class)
+    public ResponseEntity<String> handleNonUniqueResultException(Exception ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken.");
+    }
 }

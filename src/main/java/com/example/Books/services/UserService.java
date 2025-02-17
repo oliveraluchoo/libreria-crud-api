@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class UserService implements IUserService{
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -25,6 +25,9 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No user with username: " + username));
     }
     public User saveUser(User givenUser){
+        if (userRepository.findByUsername(givenUser.getUsername()).isPresent()) {
+            throw new IllegalArgumentException("Username is already taken.");
+        }
         User user = new User();
         user.setUsername(givenUser.getUsername());
         user.setPassword(passwordEncoder.encode(givenUser.getPassword()));

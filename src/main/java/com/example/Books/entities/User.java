@@ -1,9 +1,9 @@
 package com.example.Books.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.annotation.Nullable;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,11 +25,14 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @NotBlank(message = "Username cannot be blank")
+    @Column(nullable = false,unique = true)
     private String username;
-
+    @NotBlank(message = "Password cannot be blank")
+    @Column(nullable = false,unique = false)
     private String password;
-
+    @NotBlank(message = "Role cannot be blank")
+    @Column(nullable = false,unique = false)
     private String role;
 
     @Override
