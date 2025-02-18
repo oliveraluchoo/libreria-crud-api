@@ -35,7 +35,6 @@ public class BookController {
     @ApiResponse(responseCode = "200",description = "Book inserted succesfully", content = @Content(mediaType = "application/json",schema = @Schema(implementation = Book.class)))
     @ApiResponse(responseCode = "400",description = "Request error")
     @ApiResponse(responseCode = "500",description = "Internal server error")
-    public Book addBook(@RequestBody @Valid Book book){
         return bookService.addBook(book);
     }
 
@@ -65,7 +64,6 @@ public class BookController {
     @ApiResponse(responseCode = "400",description = "Request error")
     @ApiResponse(responseCode = "500",description = "Internal server error")
     @Parameter(description = "ID of the book to update", required = true, example = "1")
-    public Book updateBook(@PathVariable Long id, @Valid @RequestBody Book book){
         return bookService.updateBook(id,book);
     }
 }
