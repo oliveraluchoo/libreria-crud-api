@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     }
 
 
-    @ExceptionHandler(NonUniqueResultException.class)
+    @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleNonUniqueResultException(Exception ex){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken.");
     }
