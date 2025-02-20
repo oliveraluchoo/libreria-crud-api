@@ -57,9 +57,14 @@ Ejemplo de body:
 
 `{
   "isbn": "300",
+
   "titulo": "El Aleph",
+
   "autor": "Jorge Luis Borges",
+
   "aniopublicacion": 1949,
+
   "genero": "Narrativo"
+  
 }
 `
