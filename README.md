@@ -9,7 +9,7 @@ Primero cloná este repositorio en tu maquina usando este comando:
 
 git clone https://github.com/oliveraluchoo/libreria-crud-api.git
 
-###Abrí el Proyecto en tu Entorno de Desarrollo (IDE)
+### Abrí el Proyecto en tu Entorno de Desarrollo (IDE)
 
 Abrí tu entorno de desarrollo preferido (puede ser IntelliJ IDEA, NetBeans, Eclipse, Spring Tool Suite, u otro) y seleccioná "Open Project" (Abrir Proyecto) o su equivalente. Navegá hasta la carpeta del proyecto que acabas de clonar y ábrilo.
 
@@ -29,19 +29,39 @@ Una vez que hayas configurado la base de datos y guardado los cambios en applica
 
 ## Documentación Swagger
 
-Swagger está disponible en: http://localhost:8080/doc/swagger-ui-custom.html
+Swagger está disponible en: http://localhost:8080/swagger-ui/index.html#/
 
 ## Autenticación y autorización
 
 Algunos endpoints requieren un usuario con rol ADMIN para su ejecución.
 Los endpoints protegidos requieren autenticación mediante Basic Auth.
 
-
 ## Endpoints API
+
+### Registrar un usuario (POST)
+
+ - URL: POST http://localhost:8080/users/register
+
+ - Parámetros: Datos del usuario en formato JSON (Body)
+
+ - Respuesta:
+
+    - 201: Usuario registrado con éxito
+
+    - 400 - 500: Error de validación o servidor
+
+Ejemplo de body:
+```json
+{
+  "username": "admin",
+  "password": "123",
+  "role": "ADMIN"
+}
+```
 
 ### Crear un Libro (POST)
 
- - URL: POST http://localhost:8080/api/v1/libros/
+ - URL: POST http://localhost:8080/books
 
  - Rol Requerido: ADMIN
 
@@ -49,7 +69,7 @@ Los endpoints protegidos requieren autenticación mediante Basic Auth.
 
  - Respuesta:
 
-   - 201: Libro creado con éxito
+   - 200: Libro creado con éxito
 
    - 400 - 500: Error de validación o servidor
 
@@ -65,9 +85,9 @@ Ejemplo de body:
 }
 ```
 
-### Actualizar Un Libro
+### Actualizar Un Libro (PUT)
 
- - URL: PUT http://localhost:8080/api/v1/libros/{id}
+ - URL: PUT http://localhost:8080/books/{id}
 
  - Rol Requerido: ADMIN
 
@@ -83,4 +103,40 @@ Ejemplo de body:
 
     - 400 - 500: Error de validación o servidor
 
-###
+### Obtener un libro por ID (GET)
+
+ - URL: GET http://localhost:8080/books/{id}
+
+ - Parámetros:
+
+    - id (long) requerido en la URL
+
+ - Respuesta:
+
+    - 200: Información del libro
+
+    - 404: Libro no encontrado
+
+### Obtener todos los libros (GET)
+
+ - URL: GET http://localhost:8080/books
+
+ - Parámetros: Ninguno
+
+ - Respuesta:
+
+    - 200: Lista de todos los libros
+
+### Eliminar un libro por ID {DELETE}
+
+ - URL: DELETE http://localhost:8080/books/{id}
+
+ - Rol Requerido: ADMIN
+
+ - Parámetros: 
+ 
+    - id (long) requerido en la url
+
+ - Respuesta:
+
+    - 200: Libro eliminado
