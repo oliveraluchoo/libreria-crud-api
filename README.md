@@ -19,6 +19,7 @@ En el archivo application.properties, que se encuentra en la carpeta de recursos
 
 spring.datasource.url=jdbc:mysql://localhost:3306/tu_base_de_datos?createDatabaseIfNotExist=true
 spring.datasource.username=tu_usuario 
+
 spring.datasource.password=tu_contraseña
 
 Reemplazá tu_base_de_datos, tu_usuario y tu_contraseña con la información correspondiente a tu configuración de MySQL.
