@@ -55,11 +55,13 @@ Crear un Libro (POST)
 
 Ejemplo de body:
 
-`{
-  "isbn": "300",
-  "titulo": "El Aleph",
-  "autor": "Jorge Luis Borges",
-  "aniopublicacion": 1949,
-  "genero": "Narrativo"
+```json
+{
+  "isbn": "978-3-16-148410-0",
+  "titulo": "El Principito",
+  "autor": "Antoine de Saint-Exupéry",
+  "aniopublicacion": 1943,
+  "genero": "Ficción"
 }
-`
+
+```
