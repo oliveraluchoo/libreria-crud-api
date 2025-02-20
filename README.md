@@ -39,7 +39,7 @@ Los endpoints protegidos requieren autenticación mediante Basic Auth.
 
 ## Endpoints API
 
-Crear un Libro (POST)
+### Crear un Libro (POST)
 
  - URL: POST http://localhost:8080/api/v1/libros/
 
@@ -57,11 +57,30 @@ Ejemplo de body:
 
 ```json
 {
-  "isbn": "978-3-16-148410-0",
-  "titulo": "El Principito",
-  "autor": "Antoine de Saint-Exupéry",
-  "aniopublicacion": 1943,
-  "genero": "Ficción"
+  "isbn": "300",
+  "titulo": "El Aleph",
+  "autor": "Jorge Luis Borges",
+  "aniopublicacion": 1949,
+  "genero": "Narrativo"
 }
-
 ```
+
+### Actualizar Un Libro
+
+ - URL: PUT http://localhost:8080/api/v1/libros/{id}
+
+ - Rol Requerido: ADMIN
+
+ - Parámetros:
+
+    - id (long) requerido en la URL
+
+    - Datos actualizados en formato JSON (Body)
+
+ - Respuesta:
+
+    - 200: Libro actualizado correctamente
+
+    - 400 - 500: Error de validación o servidor
+
+###
